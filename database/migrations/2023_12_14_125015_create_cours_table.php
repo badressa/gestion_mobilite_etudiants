@@ -6,24 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCoursTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('cours', function (Blueprint $table) {
-            $table->id();
+            $table->id('codeCours');
+            $table->string('LibelleCours', 50);
+            $table->string('nbECTS', 50);
+            $table->integer('annee');
+            $table->unsignedBigInteger('codeDiplome');
+            $table->foreign('codeDiplome')->references('codeDiplome')->on('diplomes');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('cours');
